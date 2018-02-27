@@ -25,6 +25,11 @@ module Ffprober
         end
       end
 
+      def probe_options(finder)
+        return ffprobe_options if finder.ffprobe?
+        avprobe_options
+      end
+
       def ffprobe_options
         base_options = '-v quiet -print_format json -show_format'\
                        ' -show_streams -show_error'
@@ -34,6 +39,10 @@ module Ffprober
         end
 
         options
+      end
+
+      def avprobe_options
+        '-v quiet -of json -show_format -show_streams'
       end
 
       def ffprobe_version
