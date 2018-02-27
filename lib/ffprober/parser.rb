@@ -3,7 +3,7 @@
 module Ffprober
   class Parser
     def self.from_file(file_to_parse)
-      check_version unless ffprobe?
+      check_version unless Ffprober::Ffmpeg::Finder.ffprobe?
 
       raise EmptyInput, file_to_parse if File.zero?(file_to_parse)
 
