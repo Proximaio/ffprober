@@ -12,7 +12,7 @@ module Ffprober
       end
 
       def json_output(filename)
-        `#{@finder.path} #{ffprobe_options} #{Shellwords.escape(filename)}`
+        `#{@finder.path} #{probe_options(@finder)} #{Shellwords.escape(filename)}`
       end
 
       def ffprobe_version_output
