@@ -3,7 +3,7 @@
 module Ffprober
   class Parser
     def self.from_file(file_to_parse)
-      check_version
+      check_version unless ffprobe?
 
       raise EmptyInput, file_to_parse if File.zero?(file_to_parse)
 
@@ -15,7 +15,7 @@ module Ffprober
     def self.from_url(url_to_parse)
       check_version
 
-      url_parser = Parsers::UrlParser.new(url_to_parse)
+      url_parser  = Parsers::UrlParser.new(url_to_parse)
       json_parser = url_parser.load
       Ffprober::Wrapper.new(json_parser.json)
     end
